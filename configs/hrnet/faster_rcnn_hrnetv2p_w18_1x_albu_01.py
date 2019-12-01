@@ -161,7 +161,7 @@ albu_train_transforms = [
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', with_bbox=True),
-    dict(type='Resize', img_scale=(1400, 1400), keep_ratio=True),     ###
+    dict(type='Resize', img_scale=(1400, 1400), keep_ratio=True),         ###
     dict(type='RandomFlip', flip_ratio=0.5),
     dict(type='Normalize', **img_norm_cfg),
     dict(type='Pad', size_divisor=32),
@@ -176,7 +176,7 @@ train_pipeline = [
             filter_lost_elements=True),
         keymap={
             'img': 'image',
-            #'gt_masks': 'masks',
+            #'gt_masks': 'masks',                        ###
             'gt_bboxes': 'bboxes'
         },
         update_pad_shape=False,
