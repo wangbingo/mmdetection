@@ -161,7 +161,7 @@ train_pipeline = [
     dict(type='LoadAnnotations', with_bbox=True, with_mask=True),
     dict(type='Resize', img_scale=(1333, 800), keep_ratio=True),
     dict(type='Pad', size_divisor=32),
-    dict(
+    """ dict(
         type='Albu',
         transforms=albu_train_transforms,
         bbox_params=dict(
@@ -176,7 +176,7 @@ train_pipeline = [
             'gt_bboxes': 'bboxes'
         },
         update_pad_shape=False,
-        skip_img_without_anno=True),
+        skip_img_without_anno=True), """
     dict(type='Normalize', **img_norm_cfg),
     dict(type='DefaultFormatBundle'),
     dict(
