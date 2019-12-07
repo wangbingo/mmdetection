@@ -53,7 +53,7 @@ model = dict(
         in_channels=256,
         fc_out_channels=1024,
         roi_feat_size=7,
-        num_classes=81,                               ###
+        num_classes=81,
         target_means=[0., 0., 0., 0.],
         target_stds=[0.1, 0.1, 0.2, 0.2],
         reg_class_agnostic=False,
@@ -118,69 +118,13 @@ dataset_type = 'CocoDataset'
 data_root = '/root/docker_mounts_sata/data/coco/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
-albu_train_transforms = [
-    dict(
-        type='ShiftScaleRotate',
-        shift_limit=0.0625,
-        scale_limit=0.0,
-        rotate_limit=0,
-        interpolation=1,
-        p=0.5),
-    # dict(
-    #     type='RandomBrightnessContrast',
-    #     brightness_limit=[0.1, 0.3],
-    #     contrast_limit=[0.1, 0.3],
-    #     p=0.2),
-    # dict(
-    #     type='OneOf',
-    #     transforms=[
-    #         dict(
-    #             type='RGBShift',
-    #             r_shift_limit=10,
-    #             g_shift_limit=10,
-    #             b_shift_limit=10,
-    #             p=1.0),
-    #         dict(
-    #             type='HueSaturationValue',
-    #             hue_shift_limit=20,
-    #             sat_shift_limit=30,
-    #             val_shift_limit=20,
-    #             p=1.0)
-    #     ],
-    #     p=0.1),
-    # dict(type='JpegCompression', quality_lower=85, quality_upper=95, p=0.2),
-    # dict(type='ChannelShuffle', p=0.1),
-    # dict(
-    #     type='OneOf',
-    #     transforms=[
-    #         dict(type='Blur', blur_limit=3, p=1.0),
-    #         dict(type='MedianBlur', blur_limit=3, p=1.0)
-    #     ],
-    #     p=0.1),
-]
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', with_bbox=True),
-    dict(type='Resize', img_scale=(400, 400), keep_ratio=True),         ###
+    dict(type='Resize', img_scale=(1333, 800), keep_ratio=True),
     dict(type='RandomFlip', flip_ratio=0.5),
     dict(type='Normalize', **img_norm_cfg),
     dict(type='Pad', size_divisor=32),
-    dict(
-        type='Albu',
-        transforms=albu_train_transforms,
-        bbox_params=dict(
-            type='BboxParams',
-            format='pascal_voc',
-            label_fields=['gt_labels'],
-            min_visibility=0.0,
-            filter_lost_elements=True),
-        keymap={
-            'img': 'image',
-            #'gt_masks': 'masks',                        ###
-            'gt_bboxes': 'bboxes'
-        },
-        update_pad_shape=False,
-        skip_img_without_anno=True),
     dict(type='DefaultFormatBundle'),
     dict(type='Collect', keys=['img', 'gt_bboxes', 'gt_labels']),
 ]
@@ -188,7 +132,7 @@ test_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(
         type='MultiScaleFlipAug',
-        img_scale=(1100, 1100),                                    ###
+        img_scale=(1333, 800),
         flip=False,
         transforms=[
             dict(type='Resize', keep_ratio=True),
@@ -201,24 +145,24 @@ test_pipeline = [
 ]
 data = dict(
     imgs_per_gpu=1,
-    workers_per_gpu=0,
+    workers_per_gpu=1,
     train=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/instances_val2017.json',
-        img_prefix=data_root + 'val2017/',
+        ann_file=data_root + 'annotations/instances_train2014.json',
+        img_prefix=data_root + 'train2014/',
         pipeline=train_pipeline),
     val=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/train_20pct.json',
-        img_prefix=data_root + 'images/',
+        ann_file=data_root + 'annotations/instances_minival2014.json',
+        img_prefix=data_root + 'val2014/',
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/train_20pct.json',
-        img_prefix=data_root + 'images/',
+        ann_file=data_root + 'annotations/instances_val2017.json',
+        img_prefix=data_root + 'val2017/',
         pipeline=test_pipeline))
 # optimizer
-optimizer = dict(type='SGD', lr=0.002, momentum=0.9, weight_decay=0.0001)
+optimizer = dict(type='SGD', lr=0.0025, momentum=0.9, weight_decay=0.0001)
 optimizer_config = dict(grad_clip=dict(max_norm=35, norm_type=2))
 # learning policy
 lr_config = dict(
@@ -241,7 +185,7 @@ evaluation = dict(interval=1)
 total_epochs = 12
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = './work_dirs/faster_rcnn_hrnetv2p_w18_1x_albu_ShiftScaleRotate'
+work_dir = './work_dirs/faster_rcnn_hrnetv2p_w18_1x_coco-test'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]
