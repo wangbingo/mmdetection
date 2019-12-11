@@ -122,7 +122,7 @@ albu_train_transforms = [
     dict(
         type='ShiftScaleRotate',
         shift_limit=0.0625,
-        scale_limit=0.0,
+        scale_limit=0.5,
         rotate_limit=0,
         interpolation=1,
         p=0.5),
@@ -214,8 +214,8 @@ data = dict(
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/train_20pct.json',
-        img_prefix=data_root + 'images/',
+        ann_file=data_root + 'annotations/instances_minival2014.json',
+        img_prefix=data_root + 'val2014/',
         pipeline=test_pipeline))
 # optimizer
 optimizer = dict(type='SGD', lr=0.0025, momentum=0.9, weight_decay=0.0001)
