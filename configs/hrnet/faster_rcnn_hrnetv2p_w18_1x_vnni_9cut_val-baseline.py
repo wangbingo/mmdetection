@@ -150,7 +150,7 @@ data = dict(
         type=dataset_type,
         ann_file=[
             data_root + 'annotations/pos_train.json',
-            #data_root + 'annotations/neg_size80to85_0.3times_train.json'
+            data_root + 'annotations/neg_size80to85_1times_train.json'
         ],
         img_prefix=data_root + 'images/',
         pipeline=train_pipeline),
@@ -158,7 +158,7 @@ data = dict(
         type=dataset_type,
         ann_file=[
             data_root + 'annotations/pos_valid.json',
-            #data_root + 'annotations/neg_size80to85_0.3times_valid.json'
+            data_root + 'annotations/neg_size80to85_1times_valid.json'
         ],
         img_prefix=data_root + 'images/',
         pipeline=test_pipeline),
@@ -166,7 +166,7 @@ data = dict(
         type=dataset_type,
         ann_file=[
             data_root + 'annotations/pos_valid.json',
-            data_root + 'annotations/neg_size80to85_0.3times_valid.json'
+            data_root + 'annotations/neg_size80to85_1times_valid.json'
         ],
         img_prefix=data_root + 'images/',
         pipeline=test_pipeline))
