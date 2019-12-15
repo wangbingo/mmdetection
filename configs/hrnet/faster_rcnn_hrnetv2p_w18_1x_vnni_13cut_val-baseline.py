@@ -53,7 +53,7 @@ model = dict(
         in_channels=256,
         fc_out_channels=1024,
         roi_feat_size=7,
-        num_classes=2,                     ###
+        num_classes=3,                     ###
         target_means=[0., 0., 0., 0.],
         target_stds=[0.1, 0.1, 0.2, 0.2],
         reg_class_agnostic=False,
@@ -115,7 +115,7 @@ test_cfg = dict(
 )
 # dataset settings
 dataset_type = 'CocoDataset'
-data_root = '/root/docker_mounts_sata/pap_work_vnni/dataset/line01/cut_9/coco/'       ###
+data_root = '/root/docker_mounts_sata/pap_work_vnni/dataset/line01/cut_13/coco/'       ###
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 train_pipeline = [
@@ -150,7 +150,7 @@ data = dict(
         type=dataset_type,
         ann_file=[
             data_root + 'annotations/pos_train.json',
-            #data_root + 'annotations/neg_size80to85_1times_train.json'
+            data_root + 'annotations/neg_size80to85_0.3times_train.json'
         ],
         img_prefix=data_root + 'images/',
         pipeline=train_pipeline),
@@ -158,7 +158,7 @@ data = dict(
         type=dataset_type,
         ann_file=[
             data_root + 'annotations/pos_valid.json',
-            #data_root + 'annotations/neg_size80to85_1times_valid.json'
+            data_root + 'annotations/neg_size80to85_0.3times_valid.json'
         ],
         img_prefix=data_root + 'images/',
         pipeline=test_pipeline),
@@ -166,7 +166,7 @@ data = dict(
         type=dataset_type,
         ann_file=[
             data_root + 'annotations/pos_valid.json',
-            #data_root + 'annotations/neg_size80to85_1times_valid.json'
+            data_root + 'annotations/neg_size80to85_0.3times_valid.json'
         ],
         img_prefix=data_root + 'images/',
         pipeline=test_pipeline))
@@ -194,7 +194,7 @@ evaluation = dict(interval=1)
 total_epochs = 12
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = './work_dirs/faster_rcnn_hrnetv2p_w18_1x_vnni_9cut_val-baseline'
+work_dir = './work_dirs/faster_rcnn_hrnetv2p_w18_1x_vnni_13cut_val-baseline'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]
