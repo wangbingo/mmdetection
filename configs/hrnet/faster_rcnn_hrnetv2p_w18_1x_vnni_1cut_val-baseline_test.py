@@ -144,7 +144,7 @@ test_pipeline = [
         ])
 ]
 data = dict(
-    imgs_per_gpu=8,
+    imgs_per_gpu=16,
     workers_per_gpu=0,
     train=dict(
         type=dataset_type,
@@ -156,10 +156,7 @@ data = dict(
         pipeline=train_pipeline),
     val=dict(
         type=dataset_type,
-        ann_file=[
-            data_root + 'annotations/pos_valid.json',
-            data_root + 'annotations/neg_size80to85_0.3times_valid.json'
-        ],
+        ann_file=data_root + 'merged_valid.json',
         img_prefix=data_root + 'images/',
         pipeline=test_pipeline),
     test=dict(
