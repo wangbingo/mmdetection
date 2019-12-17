@@ -150,7 +150,7 @@ data = dict(
         type=dataset_type,
         ann_file=[
             data_root + 'annotations/pos_train.json',
-            data_root + 'annotations/neg_size80to85_0.1times_train.json'
+            data_root + 'annotations/neg_size80to85_1times_train.json'
         ],
         img_prefix=data_root + 'images/',
         pipeline=train_pipeline),
@@ -188,7 +188,7 @@ evaluation = dict(interval=1)
 total_epochs = 12
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = './work_dirs/faster_rcnn_hrnetv2p_w18_1x_vnni_8cut_val-1dot1time-neg'
+work_dir = './work_dirs/faster_rcnn_hrnetv2p_w18_1x_vnni_8cut_val-1.1time-neg'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]
