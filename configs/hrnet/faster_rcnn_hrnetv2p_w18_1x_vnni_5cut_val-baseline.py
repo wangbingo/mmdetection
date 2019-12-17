@@ -190,5 +190,5 @@ dist_params = dict(backend='nccl')
 log_level = 'INFO'
 work_dir = './work_dirs/faster_rcnn_hrnetv2p_w18_1x_vnni_5cut_val-baseline'
 load_from = None
-resume_from = None
+resume_from = './work_dirs/faster_rcnn_hrnetv2p_w18_1x_vnni_5cut_val-baseline/epoch_2.pth'
 workflow = [('train', 1)]
