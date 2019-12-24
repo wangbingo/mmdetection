@@ -135,7 +135,8 @@ data = dict(
     workers_per_gpu=1,
     train=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/pos_train.json',
+        ann_file=[data_root + 'annotations/pos_train.json',
+                  data_root + 'annotations/neg_size80to85_0.3times_train.json'],
         img_prefix=data_root + 'images/',
         pipeline=train_pipeline),
     val=dict(
