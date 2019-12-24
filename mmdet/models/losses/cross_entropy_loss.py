@@ -91,7 +91,7 @@ def cross_entropy(pred, label, weight=None, reduction='mean', avg_factor=None):
     logits = torch.rand(10,no_of_classes).float()
     labels = torch.randint(0,no_of_classes, size = (10,))
     beta = 0.999             #   0.9 ~ 0.9999(longtail)
-    gamma = 2.0            #   0.5, 1.0, 2.0
+    gamma = 0.5            #   0.5, 1.0, 2.0
     samples_per_cls = [5000, 500]
     loss_type = "focal"
     cb_loss = CB_loss(labels, logits, samples_per_cls, no_of_classes,loss_type, beta, gamma)
