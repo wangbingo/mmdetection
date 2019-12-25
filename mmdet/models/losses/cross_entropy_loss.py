@@ -90,15 +90,10 @@ def cross_entropy(pred, label, weight=None, reduction='mean', avg_factor=None):
     no_of_classes = 2
     logits = torch.rand(10,no_of_classes).float()
     labels = torch.randint(0,no_of_classes, size = (10,))
-<<<<<<< HEAD
+
     beta = 0.9             #   0.9 ~ 0.9999(longtail)
     gamma = 0.0           #   0.5, 1.0, 2.0
     samples_per_cls = [1, 1]
-=======
-    beta = 0.999             #   0.9 ~ 0.9999(longtail)
-    gamma = 0.0            #   0.5, 1.0, 2.0
-    samples_per_cls = [5000, 500]
->>>>>>> 58ff2257bca32bd85e60db144c348db8b614d3d8
     loss_type = "softmax"
     cb_loss = CB_loss(labels, logits, samples_per_cls, no_of_classes,loss_type, beta, gamma)
     loss = cb_loss
