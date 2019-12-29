@@ -29,61 +29,6 @@ pretrained_settings = {
             'num_classes': 1000
         }
     },
-    'se_resnet50': {
-        'imagenet': {
-            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/se_resnet50-ce0d4300.pth',
-            'input_space': 'RGB',
-            'input_size': [3, 224, 224],
-            'input_range': [0, 1],
-            'mean': [0.485, 0.456, 0.406],
-            'std': [0.229, 0.224, 0.225],
-            'num_classes': 1000
-        }
-    },
-    'se_resnet101': {
-        'imagenet': {
-            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/se_resnet101-7e38fcc6.pth',
-            'input_space': 'RGB',
-            'input_size': [3, 224, 224],
-            'input_range': [0, 1],
-            'mean': [0.485, 0.456, 0.406],
-            'std': [0.229, 0.224, 0.225],
-            'num_classes': 1000
-        }
-    },
-    'se_resnet152': {
-        'imagenet': {
-            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/se_resnet152-d17c99b7.pth',
-            'input_space': 'RGB',
-            'input_size': [3, 224, 224],
-            'input_range': [0, 1],
-            'mean': [0.485, 0.456, 0.406],
-            'std': [0.229, 0.224, 0.225],
-            'num_classes': 1000
-        }
-    },
-    'se_resnext50_32x4d': {
-        'imagenet': {
-            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/se_resnext50_32x4d-a260b3a4.pth',
-            'input_space': 'RGB',
-            'input_size': [3, 224, 224],
-            'input_range': [0, 1],
-            'mean': [0.485, 0.456, 0.406],
-            'std': [0.229, 0.224, 0.225],
-            'num_classes': 1000
-        }
-    },
-    'se_resnext101_32x4d': {
-        'imagenet': {
-            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/se_resnext101_32x4d-3b2fe3d8.pth',
-            'input_space': 'RGB',
-            'input_size': [3, 224, 224],
-            'input_range': [0, 1],
-            'mean': [0.485, 0.456, 0.406],
-            'std': [0.229, 0.224, 0.225],
-            'num_classes': 1000
-        }
-    },
 }
 
 
@@ -426,15 +371,5 @@ def train(self, mode=True):
 #                   dropout_p=0.2, num_classes=num_classes)
 #     if pretrained is not None:
 #         settings = pretrained_settings['senet154'][pretrained]
-#         initialize_pretrained_model(model, num_classes, settings)
-#     return model
-
-# def se_resnet50(num_classes=1000, pretrained='imagenet'):
-#     model = SENet(SEResNetBottleneck, [3, 4, 6, 3], groups=1, reduction=16,
-#                   dropout_p=None, inplanes=64, input_3x3=False,
-#                   downsample_kernel_size=1, downsample_padding=0,
-#                   num_classes=num_classes)
-#     if pretrained is not None:
-#         settings = pretrained_settings['se_resnet50'][pretrained]
 #         initialize_pretrained_model(model, num_classes, settings)
 #     return model
