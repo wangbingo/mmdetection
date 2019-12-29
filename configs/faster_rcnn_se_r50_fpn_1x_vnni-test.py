@@ -6,11 +6,11 @@ model = dict(
         type='SENet',
         block='SEBottleneck', layers=[3, 4, 6, 3], groups=1, reduction=16,
         dropout_p=0.2, num_classes=3),
-    # neck=dict(
-    #     type='FPN',
-    #     in_channels=[256, 512, 1024, 2048],
-    #     out_channels=256,
-    #     num_outs=5),
+    neck=dict(
+        type='FPN',
+        in_channels=[256, 512, 1024, 2048],
+        out_channels=256,
+        num_outs=5),
     rpn_head=dict(
         type='RPNHead',
         in_channels=256,
@@ -146,7 +146,7 @@ data = dict(
         img_prefix=data_root + 'images/',
         pipeline=test_pipeline))
 # optimizer
-optimizer = dict(type='SGD', lr=0.002, momentum=0.9, weight_decay=0.0001)
+optimizer = dict(type='SGD', lr=0.00125, momentum=0.9, weight_decay=0.0001)
 optimizer_config = dict(grad_clip=dict(max_norm=35, norm_type=2))
 # learning policy
 lr_config = dict(
