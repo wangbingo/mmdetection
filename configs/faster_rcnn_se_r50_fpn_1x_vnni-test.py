@@ -6,11 +6,11 @@ model = dict(
         type='SENet',
         block='SEBottleneck', layers=[3, 4, 6, 3], groups=1, reduction=16,
         dropout_p=0.2, num_classes=3),
-    neck=dict(
-        type='FPN',
-        in_channels=[256, 512, 1024, 2048],
-        out_channels=256,
-        num_outs=5),
+    # neck=dict(
+    #     type='FPN',
+    #     in_channels=[256, 512, 1024, 2048],
+    #     out_channels=256,
+    #     num_outs=5),
     rpn_head=dict(
         type='RPNHead',
         in_channels=256,
