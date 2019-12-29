@@ -121,7 +121,7 @@ img_norm_cfg = dict(
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', with_bbox=True),
-    dict(type='Resize', img_scale=(600, 400), keep_ratio=True),
+    dict(type='Resize', img_scale=(672, 512), keep_ratio=True),
     dict(type='RandomFlip', flip_ratio=0.5),
     dict(type='Normalize', **img_norm_cfg),
     dict(type='Pad', size_divisor=32),
@@ -132,7 +132,7 @@ test_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(
         type='MultiScaleFlipAug',
-        img_scale=(1333, 800),
+        img_scale=(672, 512),
         flip=False,
         transforms=[
             dict(type='Resize', keep_ratio=True),
@@ -144,7 +144,7 @@ test_pipeline = [
         ])
 ]
 data = dict(
-    imgs_per_gpu=1,
+    imgs_per_gpu=4,
     workers_per_gpu=1,
     train=dict(
         type=dataset_type,
@@ -162,7 +162,7 @@ data = dict(
         img_prefix=data_root + 'val2017/',
         pipeline=test_pipeline))
 # optimizer
-optimizer = dict(type='SGD', lr=0.00125, momentum=0.9, weight_decay=0.0001)
+optimizer = dict(type='SGD', lr=0.006, momentum=0.9, weight_decay=0.0001)
 optimizer_config = dict(grad_clip=dict(max_norm=35, norm_type=2))
 # learning policy
 lr_config = dict(
