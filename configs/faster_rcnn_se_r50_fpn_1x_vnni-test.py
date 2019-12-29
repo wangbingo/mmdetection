@@ -6,7 +6,6 @@ model = dict(
         type='SENet',
         block='SEResNetBottleneck', 
         layers=[3, 4, 6, 3],
-        frozen_stages=4, 
         groups=1, reduction=16,
         dropout_p=0.2, num_classes=3),
     neck=dict(
