@@ -30,7 +30,7 @@ model = dict(
                 block='BASIC',
                 num_blocks=(4, 4, 4, 4),
                 num_channels=(18, 36, 72, 144)))),
-    neck=dict(type='HRFPN', in_channels=[32, 64, 128, 256], out_channels=256),
+    neck=dict(type='HRFPN', in_channels=[18, 36, 72, 144], out_channels=256),
     rpn_head=dict(
         type='RPNHead',
         in_channels=256,
