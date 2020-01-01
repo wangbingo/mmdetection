@@ -168,7 +168,7 @@ img_norm_cfg = dict(
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', with_bbox=True),
-    dict(type='Resize', img_scale=(1888, 1888), keep_ratio=True),          ###
+    dict(type='Resize', img_scale=(2592, 2592), keep_ratio=True),          ###
     dict(type='RandomFlip', flip_ratio=0.5),
     dict(type='Normalize', **img_norm_cfg),
     dict(type='Pad', size_divisor=32),
@@ -179,7 +179,7 @@ test_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(
         type='MultiScaleFlipAug',
-        img_scale=(1888, 1888),                  ###
+        img_scale=(2592, 2592),                  ###
         flip=False,
         transforms=[
             dict(type='Resize', keep_ratio=True),
@@ -231,7 +231,7 @@ log_config = dict(
 total_epochs = 12
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = './work_dirs/cascade_rcnn_dconv_c4-c5_r50_fpn_1x_cq_1888_s22'
+work_dir = './work_dirs/cascade_rcnn_dconv_c4-c5_r50_fpn_1x_cq_2592_s22'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]
