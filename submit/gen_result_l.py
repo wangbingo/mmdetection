@@ -54,7 +54,8 @@ def result_from_dir():
         meta['images'] = images 
         meta['annotations'] = annotations 
         with open(json_out_path, 'w') as fp: 
-            json.dump(meta, fp, cls=MyEncoder, indent=4, separators=(',', ': ')) 
+            #json.dump(meta, fp, cls=MyEncoder, indent=4, separators=(',', ': ')) 
+            json.dump(meta, fp, cls=MyEncoder)
 if __name__ == "__main__": 
         parser = argparse.ArgumentParser(description="Generate result") 
         parser.add_argument("-m", "--model",help="Model path",type=str,) 
