@@ -36,6 +36,8 @@ def result_from_dir():
             images_anno['id'] = num 
             images.append(images_anno) 
             for i ,boxes in enumerate(result_,1): 
+                if i == 6 or i == 7 or i == 8:     # only get small pic's objs
+                    continue
                 if len(boxes): 
                     defect_label = index[i] 
                     for box in boxes: 

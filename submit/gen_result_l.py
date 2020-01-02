@@ -36,6 +36,8 @@ def result_from_dir():
             images_anno['id'] = num 
             images.append(images_anno) 
             for i ,boxes in enumerate(result_,1): 
+                if i != 6 and i != 7 and i != 8:   # only get clas 6~8
+                    continue
                 if len(boxes): 
                     defect_label = index[i] 
                     for box in boxes: 
