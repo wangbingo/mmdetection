@@ -13,7 +13,7 @@ model = dict(
         style='pytorch',
         gcb=dict(ratio=1. / 4., ),
         stage_with_gcb=(False, True, True, True),
-        norm_eval=False)
+        norm_eval=False),
         #norm_cfg=norm_cfg),
     neck=dict(
         type='FPN',
