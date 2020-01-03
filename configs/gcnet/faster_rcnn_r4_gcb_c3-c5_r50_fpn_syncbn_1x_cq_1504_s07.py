@@ -1,5 +1,5 @@
 # model settings
-norm_cfg = dict(type='SyncBN', requires_grad=True)
+#norm_cfg = dict(type='SyncBN', requires_grad=True)
 
 model = dict(
     type='FasterRCNN',
@@ -13,8 +13,8 @@ model = dict(
         style='pytorch',
         gcb=dict(ratio=1. / 4., ),
         stage_with_gcb=(False, True, True, True),
-        norm_eval=False,
-        norm_cfg=norm_cfg),
+        norm_eval=False)
+        #norm_cfg=norm_cfg),
     neck=dict(
         type='FPN',
         in_channels=[256, 512, 1024, 2048],
