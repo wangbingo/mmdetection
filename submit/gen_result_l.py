@@ -19,7 +19,7 @@ class MyEncoder(json.JSONEncoder):
 
 #generate result 
 def result_from_dir(): 
-        index = {1: 1, 2: 9, 3: 5, 4: 3, 5: 4, 6: 2, 7: 8, 8: 6, 9: 10, 10: 7}     ###
+        # index = {1: 1, 2: 9, 3: 5, 4: 3, 5: 4, 6: 2, 7: 8, 8: 6, 9: 10, 10: 7}     ###
         # build the model from a config file and a checkpoint file 
         model = init_detector(config2make_json, model2make_json, device='cuda:0') 
         pics = os.listdir(pic_path) 
@@ -39,7 +39,7 @@ def result_from_dir():
                 if i != 6 and i != 7 and i != 8:   # only get clas 6~8
                     continue
                 if len(boxes): 
-                    defect_label = index[i] 
+                    defect_label = i 
                     for box in boxes: 
                         anno = {} 
                         anno['image_id'] = num 
