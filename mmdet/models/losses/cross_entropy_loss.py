@@ -5,31 +5,10 @@ import torch.nn.functional as F
 from ..registry import LOSSES
 from .utils import weight_reduce_loss
 
-# import pdb 
 
 def cross_entropy(pred, label, weight=None, reduction='mean', avg_factor=None):
-    
-    #-->class loss          40L
-    coe = [1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0]
-    #      0    1    2    3    4    5    6     7    8    9    10   11
-    
-    list1 = []
-    
-    for i in range(512):
-        if label[i].item() == 0:
-            break
-        list1.append(label[i].item())
-    
-    sum = 0
-    for ele in list1:
-        sum = sum + coe[ele]
-    
-    c = sum / len(list1)
-    
-    #<--class loss
-    
     # element-wise losses
-    loss = F.cross_entropy(pred, label, reduction='none') * c
+    loss = F.cross_entropy(pred, label, reduction='none')
 
     # apply weights and do the reduction
     if weight is not None:
