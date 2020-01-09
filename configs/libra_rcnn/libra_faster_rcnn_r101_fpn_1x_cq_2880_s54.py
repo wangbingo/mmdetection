@@ -123,7 +123,7 @@ img_norm_cfg = dict(
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', with_bbox=True),
-    dict(type='Resize', img_scale=(3008, 3008), keep_ratio=True),      ###
+    dict(type='Resize', img_scale=(2880, 2880), keep_ratio=True),      ###
     dict(type='RandomFlip', flip_ratio=0.5),
     dict(type='Normalize', **img_norm_cfg),
     dict(type='Pad', size_divisor=32),
@@ -134,7 +134,7 @@ test_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(
         type='MultiScaleFlipAug',
-        img_scale=(3008, 3008),                 ###
+        img_scale=(2880, 2880),                 ###
         flip=False,
         transforms=[
             dict(type='Resize', keep_ratio=True),
@@ -186,7 +186,7 @@ log_config = dict(
 total_epochs = 12
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = './work_dirs/libra_faster_rcnn_r101_fpn_1x_cq_3008_s54'
+work_dir = './work_dirs/libra_faster_rcnn_r101_fpn_1x_cq_2880_s54'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]
