@@ -9,8 +9,8 @@ from .utils import weight_reduce_loss
 
 def cross_entropy(pred, label, weight=None, reduction='mean', avg_factor=None):
     
-    #-->class loss         s66
-    coe = [1.0, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 4.0]
+    #-->class loss         s72
+    coe = [1.0, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 2.0]
     #      0    1    2    3    4    5    6     7    8    9    10   11
     
     list1 = []
