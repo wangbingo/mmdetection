@@ -3,5 +3,8 @@
 		{
 			"path": "."
 		}
-	]
+	],
+	"settings": {
+		"docker.defaultRegistryPath": "registry.cn-shanghai.aliyuncs.com/wangbingo"
+	}
 }
