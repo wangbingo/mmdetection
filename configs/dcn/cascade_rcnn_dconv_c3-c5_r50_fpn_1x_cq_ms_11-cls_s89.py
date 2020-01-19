@@ -162,7 +162,7 @@ test_cfg = dict(
     keep_all_stages=False)
 # dataset settings
 dataset_type = 'CocoDataset'
-data_root = '/root/docker_mounts_ssd/cq/chongqing1_round1_train1_20191223/'
+data_root = '/content/drive/My\ Drive/cq/chongqing1_round1_train1_20191223/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 train_pipeline = [
@@ -191,7 +191,7 @@ test_pipeline = [
         ])
 ]
 data = dict(
-    imgs_per_gpu=4,
+    imgs_per_gpu=1,
     workers_per_gpu=0,
     train=dict(
         type=dataset_type,
@@ -209,7 +209,7 @@ data = dict(
         img_prefix=data_root + 'val2017/',
         pipeline=test_pipeline))
 # optimizer
-optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0001)
+optimizer = dict(type='SGD', lr=0.00125, momentum=0.9, weight_decay=0.0001)
 optimizer_config = dict(grad_clip=dict(max_norm=35, norm_type=2))
 # learning policy
 lr_config = dict(
@@ -217,7 +217,7 @@ lr_config = dict(
     warmup='linear',
     warmup_iters=500,
     warmup_ratio=1.0 / 3,
-    step=[8, 11])
+    step=[3, 5])
 checkpoint_config = dict(interval=1)
 # yapf:disable
 log_config = dict(
@@ -228,10 +228,10 @@ log_config = dict(
     ])
 # yapf:enable
 # runtime settings
-total_epochs = 12
+total_epochs = 6
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = './work_dirs/cascade_rcnn_dconv_c3-c5_r50_fpn_1x_cq_ms_s88'
-load_from = './checkpoints/cascade_rcnn_r50_coco_pretrained_weights_classes_11.pth'
+work_dir = '/content/drive/My\ Drive//work_dirs/cascade_rcnn_dconv_c3-c5_r50_fpn_1x_cq_ms_s89'
+load_from = '/content/drive/My\ Drive/cascade_rcnn_r50_coco_pretrained_weights_classes_11.pth'
 resume_from = None
 workflow = [('train', 1)]
